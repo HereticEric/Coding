@@ -41,4 +41,21 @@ Loop Ends
 
 -------------------------------------------------------------------------
 ACTIVITY 5
+Create counter variables for  Left and Right results
+Set left_count = 0
+Set right_count = 0
+
+Create a loop to repeat the process 10 times
+FOR count from 1 to 10
+Make a random number generator and make the range from 1 to 100
+SET random_number = Random)1,100)
+
+Create a modulo operator to check if the number is even or odd
+If random_number MOD 2 == 0
+Output: Print "Right"
+Set right_count = right_count + 1
+ELSE
+Output: Print "Left"
+Set left_count = left_count + 1
+After the process repeats 10 times, the code will end and then have it print out the final counts
 
