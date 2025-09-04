@@ -1,2 +1,10 @@
 User Phrase: "My name is John"
 Output: "MY NAME IS JOHN"
+User can 
+
+
+Create an output that asks the user to input 2 numbers: Output: "Please enter 2 Numbers"
+Create a boolean or double so that the user can input their 2 different numbers
+User is prompted to input: Number 1: 10
+User is prompted to input 2nd number: Number 2: 12
+Create output that shows what the two numbers combined give you: Output: 22
