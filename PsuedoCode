@@ -8,3 +8,18 @@ Create a boolean or double so that the user can input their 2 different numbers
 User is prompted to input: Number 1: 10
 User is prompted to input 2nd number: Number 2: 12
 Create output that shows what the two numbers combined give you: Output: 22
+
+
+Create an output message that asks the user to enter numbers that they would like to add together: Output: "Please enter numbers you want added"
+Create the prompt for the user to fill out a number: User Input: Number: 10
+Create a message that will show up after the user enters the number that asks if they want to enter another number or not
+Output: "Another Number? (Y/N)
+If the user types in Y, have the prompt come up again for them to enter another number
+User Input: Y
+User Input: Number: 20
+Output: "Another Number?"
+User Input: Y
+User Input : 15
+Output: "Another Number?"
+User Input: N
+Show the sum of the numbers the user has entered Output: "45"
