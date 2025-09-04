@@ -1,15 +1,17 @@
+ACTIVITY 1
+
 User Phrase: "My name is John"
 Output: "MY NAME IS JOHN"
 User can 
-
-
+-------------------------------------------------------------------------
+ACTIVITY 2
 Create an output that asks the user to input 2 numbers: Output: "Please enter 2 Numbers"
 Create a boolean or double so that the user can input their 2 different numbers
 User is prompted to input: Number 1: 10
 User is prompted to input 2nd number: Number 2: 12
 Create output that shows what the two numbers combined give you: Output: 22
-
-
+-------------------------------------------------------------------------
+ACTIVITY 3
 Create an output message that asks the user to enter numbers that they would like to add together: Output: "Please enter numbers you want added"
 Create the prompt for the user to fill out a number: User Input: Number: 10
 Create a message that will show up after the user enters the number that asks if they want to enter another number or not
@@ -23,3 +25,20 @@ User Input : 15
 Output: "Another Number?"
 User Input: N
 Show the sum of the numbers the user has entered Output: "45"
+-------------------------------------------------------------------------
+ACTIVITY 4
+Prompt the user to enter a maximum number, Then make the system print out a random number between 0 and their number and create a loop that will ask the user after input if they want to add another number or not
+User Input: Max Number: 100
+Output: 11
+Call upon the loop you made: Output: New Number?(y/n) 
+User enters Y for Yes: User Input: Y
+User Input: Max Number: 10
+Output: 2
+Loop will play again
+Ouput: New Number?(y/n) 
+User Input:N
+Loop Ends
+
+-------------------------------------------------------------------------
+ACTIVITY 5
+
