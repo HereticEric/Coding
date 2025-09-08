@@ -1,0 +1,16 @@
+START
+//Create The Game Loop
+While attemptCount < maxAttempts & guessedCorrectly is false
+PRINT "Attempt", attemptCount + 1, "of", maxAttempts
+Display prompt for the users guess
+
+//Create an IF Statement For When The User Guesses The Correct Number
+If userGuess == correctNumber Then
+Set guessedCorrectly to "True"
+PRINT "Congradulations! You have guessed the number correctly!"
+Else If userGuess < secretNumber Then
+Print "Too low"
+Else
+PRINT "Too high"
+
+//Create Variables 
