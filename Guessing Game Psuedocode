@@ -5,7 +5,7 @@ PRINT "Attempt", attemptCount + 1, "of", maxAttempts
 Display prompt for the users guess
 
 //Create an IF Statement For When The User Guesses The Correct Number
-If userGuess == correctNumber Then
+If userGuess == secretNumber Then
 Set guessedCorrectly to "True"
 PRINT "Congradulations! You have guessed the number correctly!"
 Else If userGuess < secretNumber Then
@@ -14,3 +14,21 @@ Else
 PRINT "Too high"
 
 //Create Variables 
+int minNumber = 1
+int maxNumber = 100
+int secretNumber = random % 100 + 1
+int userGuess
+int maxAttempts = 7
+
+// Game Begin
+
+PRINT "Guess a Number Between 1 & 100"
+PRINT "You have 7 attempts"
+PRINT "Enter Your Guess"
+
+userGuess
+if user uses all attempts then PRINT : "Sorry you are out of attempts. The number was (secretNumber)"
+when user wins or loses the game PRINT: "Would you like to play again? Y/N"
+if user selects Y, begin game again
+if user selects N, PRINT: "Thank you for playing!"
+End of Game
