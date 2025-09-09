@@ -4,7 +4,7 @@ While attemptCount < maxAttempts & guessedCorrectly is false
 PRINT "Attempt", attemptCount + 1, "of", maxAttempts
 Display prompt for the users guess
 
-//Create an IF Statement For When The User Guesses The Correct Number
+//Create an IF statement for when the user guesses the correct number
 If userGuess == secretNumber Then
 Set guessedCorrectly to "True"
 PRINT "Congradulations! You have guessed the number correctly!"
@@ -12,6 +12,11 @@ Else If userGuess < secretNumber Then
 Print "Too low"
 Else
 PRINT "Too high"
+
+//Create an IF statement for when the user uses all of their attempts
+If userGuess > maxAttempts Then end the game
+PRINT "Game over, you're out of attempts!"
+
 
 //Create Variables 
 int minNumber = 1
