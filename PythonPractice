@@ -1,0 +1,61 @@
+
+
+                #convert user input into all caps, print the result
+                #bonus: make sure they dont type a number
+answer = input("Please type a random line: ")
+print(answer.upper())
+
+                #Ask user for 2 numbers. add them together then print
+                #Bonus: make sure user doesn't type a string
+firstNumber = input("Please enter the first number.")
+firstNumber = int(firstNumber)
+secondNumber = input("Please enter your second number")
+secondNumber = int(secondNumber)
+
+sum = (firstNumber + secondNumber)
+print("The sum of these numbers is: ", sum)
+
+#Get an unknown amount of numbers from the user, add them together, print the result
+userContinue = "Y"
+total = 0
+
+while userContinue != "N":
+    answer = input("Give me a number")
+    while not answer.isdigit():
+        print("Not a number")
+        answer = input("Give me a number")
+        answer = int(answer)
+        total = total + answer
+        userContinue = input("Do you want to enter another? Y or N")
+
+        print(total)
+
+        
+        # 4 have the yser define a maximum whole number, print out a random number between 0 and that maximum
+
+        import random
+        print(random.random())
+        print(random.randint(1, 100))
+
+        # 5 Get a random number, if the number is even print Right, if odd then print left
+        #do this 10 times then print out how many lefts vs rights
+        import random
+
+left_count = 0
+right_count = 0
+
+for _ in range(10):
+    num = random.randint(1, 100) 
+    if num % 2 == 0:
+        print(f"{num} ? Right")
+        right_count += 1
+    else:
+        print(f"{num} ? Left")
+        left_count += 1
+
+print(f"Lefts: {left_count}")
+print(f"Rights: {right_count}")
+
+     
+
+
