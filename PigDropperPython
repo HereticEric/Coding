@@ -1,0 +1,184 @@
+#Pig Dropper Game
+import sys
+import pygame
+import random
+
+pygame.init()
+
+width = 800
+height = 600
+size = (width, height)
+
+black = (0, 0, 0)
+green = (0, 200, 0)
+red = (200, 0, 0)
+white = (255, 255, 255)
+gold = (255, 215, 0)
+
+screen = pygame.display.set_mode(size)
+
+
+pig = pygame.image.load("pig.png")
+
+iterator = 0
+numofPigs = 5
+startX = []
+startY = []
+speed = []
+basespeed = []
+
+# Pig setup
+while iterator < numofPigs:
+    startX.append(random.randint(0, width - pig.get_width()))
+    startY.append(-random.randint(pig.get_height(), pig.get_height() * 2))
+    s = random.uniform(1, 3)
+    speed.append(s)
+    basespeed.append(s)
+    iterator += 1
+
+# Powerup setup
+powerupActive = False
+powerupX = random.randint(0, width - 50)
+powerupY = -100
+powerupSpeed = 2
+slowMode = False
+slowTimer = 0
+slowTimeMax = 300  
+
+# Replay screen 
+bigfont = pygame.font.SysFont(None, 200)
+playagaintext = bigfont.render("Play Again?", True, green)
+pax = width / 2 - playagaintext.get_rect().width / 2
+
+smallfont = pygame.font.SysFont(None, 100)
+yestext = smallfont.render("Yes", True, green)
+yesx = width / 4 - yestext.get_rect().width / 2
+notext = smallfont.render("No", True, green)
+nox = width - width / 4 - yestext.get_rect().width / 2
+
+# Other variables
+replayscreen = False
+gameover = False
+score = 0
+
+clock = pygame.time.Clock()
+
+# Game Loop
+while gameover == False:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            gameover = True
+
+    screen.fill(black)
+
+    # Mouse click
+    if pygame.mouse.get_pressed()[0]:
+        coords = pygame.mouse.get_pos()
+
+        if replayscreen == False:
+            iterator = 0
+            while iterator < numofPigs:
+                if (coords[0] >= startX[iterator] and coords[0] <= startX[iterator] + pig.get_width() and
+                    coords[1] >= startY[iterator] and coords[1] <= startY[iterator] + pig.get_height()):
+                    startX[iterator] = random.randint(0, width - pig.get_width())
+                    startY[iterator] = -random.randint(pig.get_height(), pig.get_height() * 2)
+                    s = random.uniform(1, 3)
+                    speed[iterator] = s
+                    basespeed[iterator] = s
+                    score += 1
+                    break
+                iterator += 1
+
+            # Click power-up
+            if powerupActive:
+                if (coords[0] >= powerupX and coords[0] <= powerupX + 50 and
+                    coords[1] >= powerupY and coords[1] <= powerupY + 50):
+                    powerupActive = False
+                    slowMode = True
+                    slowTimer = slowTimeMax
+                    for i in range(numofPigs):
+                        speed[i] = basespeed[i] * 0.3
+                    print("Power-up activated! Pigs slowed down!")
+
+        else:
+            # Replay screen clicks
+            if (coords[0] > yesx and coords[0] < yesx + yestext.get_rect().width and
+                coords[1] > 450 and coords[1] < 450 + yestext.get_rect().height):
+                iterator = 0
+                while iterator < numofPigs:
+                    startX[iterator] = random.randint(0, width - pig.get_width())
+                    startY[iterator] = -random.randint(pig.get_height(), pig.get_height() * 2)
+                    s = random.uniform(1, 3)
+                    speed[iterator] = s
+                    basespeed[iterator] = s
+                    iterator += 1
+                replayscreen = False
+                score = 0
+                slowMode = False
+                slowTimer = 0
+                powerupActive = False
+
+            if (coords[0] > nox and coords[0] < nox + notext.get_rect().width and
+                coords[1] > 450 and coords[1] < 450 + notext.get_rect().height):
+                gameover = True
+
+    # Updating pigs
+    if replayscreen == False:
+        iterator = 0
+        while iterator < numofPigs:
+            startY[iterator] += speed[iterator]
+            if startY[iterator] > height:
+                replayscreen = True
+                break
+            iterator += 1
+
+        # Power up
+        if powerupActive == False and random.randint(1, 500) == 1:
+            powerupActive = True
+            powerupX = random.randint(0, width - 50)
+            powerupY = -50
+
+        if powerupActive == True:
+            powerupY += powerupSpeed
+            if powerupY > height:
+                powerupActive = False
+
+        # Slow mode countdown
+        if slowMode == True:
+            slowTimer -= 1
+            if slowTimer <= 0:
+                slowMode = False
+                for i in range(numofPigs):
+                    speed[i] = basespeed[i]
+
+        # Drawing pigs
+        iterator = 0
+        while iterator < numofPigs:
+            screen.blit(pig, (startX[iterator], startY[iterator]))
+            iterator += 1
+
+        # Draw power-up (gold circle)
+        if powerupActive == True:
+            pygame.draw.circle(screen, gold, (powerupX + 25, powerupY + 25), 25)
+
+        # Score
+        scoretext = smallfont.render("Score: " + str(score), True, white)
+        screen.blit(scoretext, (10, 10))
+
+        # Slow mode message
+        if slowMode == True:
+            slowtext = smallfont.render("SLOW-MO ACTIVE!", True, gold)
+            screen.blit(slowtext, (width / 2 - 200, 10))
+
+    else:
+        # Replay screen
+        screen.fill(red)
+        screen.blit(playagaintext, (pax, 150))
+        screen.blit(yestext, (yesx, 450))
+        screen.blit(notext, (nox, 450))
+
+    pygame.display.flip()
+    clock.tick(60)
+
+pygame.quit()
+sys.exit()
