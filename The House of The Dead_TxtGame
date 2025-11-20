@@ -1,0 +1,275 @@
+# Text Adventure based on the arcade game The House of The Dead
+#Eric Escobedo
+
+
+### Print out the welcome message for the game
+print("THE HOUSE OF THE DEAD")
+print("Welcome, Agent: ")
+
+### Have User enter their name
+userName = input("")
+## Read the users name and continue the opening story 
+print("Agent", userName)
+print("You are to investigate the Curien Mansion.")
+print("There have been reports of hordes of the undead on the property. Expect Casualties.")
+print("We believe that Dr. Curien has released all of his experiments onto his own scientists.")
+print("You are to find Dr. Curien and apprehend, or elimate him.")
+print(f"Good luck, Agent {userName}. \n")  
+
+#Have some spacing between the user name input section and the start of the game
+print("*******************************")
+print("*******************************")
+print("*******************************\n")
+
+### Begin the start of the game
+print("The day is December 20th, 1998.")
+print("The sky is cloudy and bleak, and the air hangs heavy with the stench of the rotting flesh of the undead.")
+print("Welcome to..")
+print("THE HOUSE OF THE DEAD\n")
+
+
+
+
+## Gun variables
+gunLoaded = True
+ammoCount = 6
+
+#FIRST ENEMY ENCOUNTER
+print("You walk toward's the massive mansion. Loud echoes of the innocent being eaten by the undead can be heard all around.")
+print("A zombie blocks your way to the mansion, and it's charging you!")
+print("Will you: Shoot (S), or Reload (R)?")
+playerChoice = input("> ")
+
+if (playerChoice == "s"):
+  if gunLoaded and ammoCount > 0:
+    print("You unload a barrage of bullets into the undead creature. Leaving it lying in a pile of gore on the ground.")
+    ammoCount = 0
+    gunLoaded = False
+    print("Your magazine is empty. Ammo:", ammoCount)
+  else:
+    print("RELOAD!")
+    print("The zombie lunges at you while you frantically pull the trigger!")
+    print("Game Over.")
+elif (playerChoice == "r"):
+  print("You take a moment to reload your weapon.")
+  ammoCount = 6
+  gunLoaded = True
+  print("Magazine loaded. Ammo:", ammoCount)
+  print("But the zombie was too close! It lunges at you while you reload!")
+  print("The undead creature sinks its teeth into your neck. You scream in agony!")
+  print("Game Over.")
+  exit ()
+else:
+  print("Invalid choice! The zombie attacks while you hesitate!")
+  print("Game Over.")
+  exit()
+
+# Reload opportunity after first encounter
+print("\nThe area is clear for now.")
+print("Do you want to reload your weapon? (Y/N)")
+reloadChoice = input("> ")
+if (reloadChoice == "Y" or reloadChoice == "y"):
+  ammoCount = 6
+  gunLoaded = True
+  print("You reload your weapon. Magazine loaded. Ammo:", ammoCount)
+else:
+  print("You continue without reloading. Ammo:", ammoCount)
+
+## PATH CHOICE
+print("You head closer towards the mansion.")
+print("You arrive in front of the staircase leading to the entrance.")
+print("You see the main entrance, but to your left you see a side entrance.")
+print("Which path do you choose to take?")
+print("Side Entrance (Side), or Main Entrance (Main)?")
+pathChoice = input("> ")
+
+
+#Side path chosen
+if (pathChoice == "Side"):
+  print("You head towards the left side of the mansion, going around the corner of the structure.")
+  print("As you turn the corner, 2 zombies covered in mud and moss lumber slowly towards you!")
+  print("Will you: Shoot (S), or Reload (R)?")
+  playerChoice2 = input("> ")
+
+  if (playerChoice2 == "S"):
+    if gunLoaded and ammoCount >= 3:
+      print("You fire rounds into one of the undead. Blowing it's head clean off!")
+      ammoCount = ammoCount - 3
+      print("The other zombie inches closer towards you still!")
+      print("Ammo remaining:", ammoCount)
+
+      # Deal with the second zombie
+      print("\nThe second zombie lunges at you!")
+      print("Quick! What do you do? Shoot (S), or Reload (R)?")
+      playerChoice3 = input("> ")
+      if (playerChoice3 == "S" or playerChoice3 == "s"):
+        if ammoCount >= 3:
+          print("You fire at the second zombie, blasting it down!")
+          ammoCount = ammoCount - 3
+          print("Both zombies are dead. You're safe... for now.")
+          print("Ammo remaining:", ammoCount)
+          if ammoCount == 0:
+            gunLoaded = False
+        else:
+          print("RELOAD! You're out of ammo!")
+          print("The zombie lunges at you!")
+          print("Game Over.")
+      elif (playerChoice3 == "R" or playerChoice3 == "r"):
+        print("You frantically try to reload your weapon!")
+        print("But the zombie is too close! It sinks its teeth into your shoulder!")
+        print("Game Over.")
+      else:
+        print("Invalid choice! The zombie attacks!")
+        print("Game Over.")
+    else:
+      print("RELOAD!")
+      print("The zombies lunge at you while you frantically pull the trigger!")
+      print("Game Over.")
+  elif (playerChoice2 == "R"):
+    print("You take a moment to reload your weapon.")
+    ammoCount = 6
+    gunLoaded = True
+    print("Magazine loaded. Ammo:", ammoCount)
+    print("But both zombies are closing in fast!")
+
+  # Reload opportunity after second encounter
+  print("\nYou've survived the encounter.")
+  print("Do you want to reload your weapon? (Y/N)")
+  reloadChoice2 = input("> ")
+  if (reloadChoice2 == "Y" or reloadChoice2 == "y"):
+    ammoCount = 6
+    gunLoaded = True
+    print("You reload your weapon. Magazine loaded. Ammo:", ammoCount)
+  else:
+    print("You continue without reloading. Ammo:", ammoCount)
+
+# Main Entrance Chosen
+if (pathChoice == "Main"):
+  print("You head up the stairs leading to the mansions main entrance.")
+  print("You kick open the door and head inside.")
+  print("As you explore the main hallway in the mansion, you turn a corner and find a tall bloated zombie wielding a chainsaw running towards you!")
+  print("Will you Shoot(S), or Reload (R)?")
+
+  playerChoiceMain1 = input("> ")
+
+  if (playerChoiceMain1 == "S" or playerChoiceMain1 == "s"):
+    if gunLoaded and ammoCount >= 4:
+      print("You open fire on the bloated creature!")
+      ammoCount -= 4
+      print("Your bullets blast into the zombie, slowing it down!")
+      print("Ammo remaining:", ammoCount)
+
+      print("The chainsaw zombie roars and charges again!")
+      print("Quick! Shoot (S), or Reload (R)?")
+      playerChoiceMain2 = input("> ")
+
+      if (playerChoiceMain2.lower() == "s"):
+        if ammoCount >= 2:
+          print("You fire twice, right into it's head!")
+          ammoCount -= 2
+          print("The chainsaw zombie collapses, convulsing a few times before going limp.")
+          print("Ammo remaining:", ammoCount)
+        else:
+          print("RELOAD! Not enough ammo!")
+          print("The zombie rams the chainsaw into your chest!")
+          print("Game Over.")
+          exit()
+
+      elif (playerChoiceMain2.lower() == "r"):
+        print("You try to reload your weapon!")
+        print("But the zombie is too close!")
+        print("It swings the chainsaw into you!")
+        print("Game Over.")
+        exit()
+
+      else:
+        print("Invalid choice! The chainsaw zombie cuts you down!")
+        print("Game Over.")
+        exit()
+
+    else:
+      print("RELOAD! You don’t have enough ammo!")
+      print("The chainsaw zombie cleaves into you instantly!")
+      print("Game Over.")
+      exit()
+
+  elif (playerChoiceMain1 == "R" or playerChoiceMain1 == "r"):
+    print("You reload your weapon as fast as you can!")
+    ammoCount = 6
+    gunLoaded = True
+    print("Magazine loaded. Ammo:", ammoCount)
+
+    print("The zombie is almost on top of you!")
+    print("Shoot (S), or Reload Again (R)?")
+    playerChoiceMainReload = input("> ")
+
+    if (playerChoiceMainReload.lower() == "s"):
+      print("You fire multiple rounds into the zombie's torso!")
+      print("It stumbles, but continues to shuffle towards you!")
+      ammoCount -= 3
+      print("Ammo remaining:", ammoCount)
+
+      print("Finish it! Shoot (S), or Reload (R)?")
+      playerChoiceMainFinish = input("> ")
+
+      if (playerChoiceMainFinish.lower() == "s"):
+        if ammoCount >= 2:
+          print("You fire the last shots into its brain!")
+          ammoCount -= 2
+          print("The chainsaw zombie collapses.")
+        
+        else:
+          print("RELOAD! You're out of ammo!")
+          print("The zombie revs its chainsaw and slices through you!")
+          print("Game Over.")
+          exit()
+
+      elif (playerChoiceMainFinish.lower() == "r"):
+        print("You try to reload at point-blank range!")
+        print("The zombie cuts you in half before you can finish!")
+        print("Game Over.")
+        exit()
+
+      else:
+        print("Invalid choice! The zombie overwhelms you!")
+        print("Game Over.")
+        exit()
+
+  
+
+    
+
+  else:
+    print("Invalid choice! The zombie charges and kills you instantly!")
+    print("Game Over.")
+    exit()
+
+  # Reload opportunity after main entrance fight
+  print("\nYou survived the terrifying encounter.")
+  print("Do you want to reload your weapon? (Y/N)")
+  reloadChoice3 = input("> ")
+
+  if (reloadChoice3.lower() == "y"):
+    ammoCount = 6
+    gunLoaded = True
+    print("You reload your weapon. Magazine loaded. Ammo:", ammoCount)
+  else:
+    print("You continue without reloading. Ammo:", ammoCount)
+
+  # Continue into the mansion and end the game 
+  print("\n ")
+  print("The mansion halls are dimly lit, and blood stains every corner of the wallpaper.")
+  print("You hear more groans of the undead along with the screams of more survivors echo from deeper within the halls of the mansion.")
+  print("At the end of the hall you see a figure of a man dash into a room. Quickly slamming the door behind them.")
+
+print("\nTo be continued…")
+exit ()
+
+
+
+
+
+
+
+
+
